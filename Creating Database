@@ -1,0 +1,232 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+void accept();
+void display();
+void search();
+void sort();
+void modify();
+void append();
+int n , i , ch ,ch2 , roll , n1 , m;
+char newname[30] , cname[30];
+struct student
+{
+int rollno;
+char name[20];
+char courname[30];
+int m1, m2, m3, total;
+float avg;
+}st[10];
+int main()
+{
+int opt=0;
+printf("Enter the number of students ");
+scanf("%d", &n);
+printf("Database of Students");
+accept();
+do
+{
+printf("\n MENU");
+printf("\n1.Display\n2.Search\n3.Sort\n4.Modify\n5.Append\n6.Exit");
+printf("Enter your choice :");
+scanf("%d", &ch);
+switch (ch)
+{
+case 1:
+display();
+break;
+case 2:
+search();
+break;
+case 3:
+sort();
+break;
+case 4:
+modify();
+break;
+case 5:
+append();
+break;
+}
+printf("\nDo you want to continue?(yes-1 , no-0)");
+scanf("%d",&opt);
+} while (opt == 1);
+}
+void accept()
+{
+for (i = 1; i <= n; i++)
+{
+printf("\nEnter Roll Number :");
+scanf("%d", &st[i].rollno);
+printf("\nEnter Name :");
+scanf("%s", st[i].name);
+printf( "\nCourse Name :" );
+scanf("%s", st[i].courname);
+printf("\nM1 marks: :" );
+scanf("%d", &st[i].m1);
+printf("\nM2 marks:");
+scanf("%d", &st[i].m2);
+printf("\nM3 marks:");
+scanf("%d", &st[i].m3);
+}
+}
+void display()
+{
+printf("\nRoll No. Name Course name M1 M2 M3");
+for (i = 1; i <= n; i++)
+{
+printf("\n%d %s %s %d %d %d" , st[i].rollno, st[i].name,
+st[i].courname, st[i].m1 ,st[i].m2, st[i].m3);
+}
+}
+void search()
+{
+int r;
+printf("Enter Student's Roll number :");
+scanf("%d", &r);
+for (i = 1; i <= n; i++)
+{
+if (r == st[i].rollno)
+{
+printf("\nRoll No.\t\tName \t\tCourse Name\t\tM1 \t\tM2\t\tM3");
+printf("\n%d \t\t%s \t\t%s \t\t%d\t\t%d\t\t%d",st[i].rollno,
+st[i].name, st[i].courname, st[i].m1 ,st[i].m2, st[i].m3);
+}
+else
+{
+printf("Data not found");
+}
+}
+}
+void sort()
+{
+}
+void modify()
+{
+printf("What you want to Modify ?\n");
+printf("Menu:\n");
+printf("1.Roll Number \n2.name \n3.Couse Name \n4.M1 Marks \n5.M2 Marks \n6.M3
+Marks\n");
+scanf("%d", &ch2);
+switch (ch2)
+{
+case 1:
+printf("Enter Roll Number you want to modify:\n");
+scanf("%d", &roll);
+for (i = 0; i <= n; i++)
+{
+if (st[i].rollno == roll)
+{
+printf("Enter new Roll number:");
+scanf("%d", &st[i].rollno);
+printf("\nRoll No. Name Course name M1 M2 M3");
+printf("\n%d %s %s %d %d %d", st[i].rollno,
+st[i].name, st[i].courname, st[i].m1 ,st[i].m2, st[i].m3);
+}
+}
+break;
+case 2:
+printf("Enter name you want to modify:\n");
+scanf("%s", newname);
+for (i = 0; i <= n; i++)
+{
+if (st[i].name == newname)
+{
+printf("Enter new Name:");
+scanf("%s", st[i].name);
+printf("\nRoll No. Name Course name M1 M2 M3");
+printf("\n%d %s %s %d %d %d", st[i].rollno,
+st[i].name, st[i].courname, st[i].m1 ,st[i].m2, st[i].m3);
+}
+}
+break;
+case 3:
+printf("Enter name you want to modify:\n");
+scanf("%s", cname);
+for (i = 0; i <= n; i++)
+{
+if (st[i].courname == cname)
+{
+printf("Enter new Name:");
+scanf("%s", st[i].courname);
+printf("\nRoll No. Name Course name M1 M2 M3");
+printf("\n%d %s %s %d %d %d", st[i].rollno,
+st[i].name, st[i].courname, st[i].m1 ,st[i].m2, st[i].m3);
+}
+}
+break;
+case 4:
+printf("Enter roll number whose marks you want to modify:\n");
+scanf("%d", &roll);
+for (i = 0; i <= n; i++)
+{
+if (st[i].rollno == roll )
+{
+printf("Enter M1 Marks:");
+scanf("%d", &st[i].m1);
+printf("\nRoll No. Name Course name M1 M2 M3");
+printf("\n%d %s %s %d %d %d", st[i].rollno,
+st[i].name, st[i].courname, st[i].m1 ,st[i].m2, st[i].m3);
+}
+}
+break;
+case 5:
+printf("Enter roll number whose marks you want to modify:\n");
+scanf("%d", &roll);
+for (i = 0; i <= n; i++)
+{
+if (st[i].rollno == roll)
+{
+printf("Enter M2 Marks:");
+scanf("%d", &st[i].m2);
+printf("\nRoll No. Name Course name M1 M2 M3");
+printf("\n%d %s %s %d %d %d", st[i].rollno,
+st[i].name, st[i].courname, st[i].m1,st[i].m2, st[i].m3);
+}
+}
+break;
+case 6:
+printf("Enter roll number whose marks you want to modify:\n");
+scanf("%d", &roll);
+for (i = 0; i <= n; i++)
+{
+if (st[i].rollno == roll)
+{
+printf("Enter M3 Marks:");
+scanf("%d", &st[i].m3);
+printf("\nRoll No. Name Course name M1 M2 M3");
+printf("\n%d %s %s %d %d %d", st[i].rollno,
+st[i].name, st[i].courname, st[i].m1,st[i].m2, st[i].m3);
+}
+}
+break;
+}
+}
+void append()
+{
+printf("Enter number of entries to be Appended:");
+scanf("%d",&n1);
+m = n + n1;
+for (i = n; i < m; i++)
+{
+printf("\nEnter Roll Number :");
+scanf("%d",&st[i].rollno);
+printf("\nEnter Name :");
+scanf("%s",st[i].name);
+printf("\nCourse Name :");
+scanf("%s",st[i].courname);
+printf( "\nM1 marks: :" );
+scanf("%d",&st[i].m1);
+printf("\nM2 marks:");
+scanf("%d",&st[i].m2);
+printf("\nM3 marks:");
+scanf("%d",&st[i].m3);
+}
+printf("New Database :");
+printf("\nRoll No. Name Course name M1 M2 M3");
+for (i = 1; i <= m; i++)
+{
+printf("\n%d %s %s %d %d %d", st[i].rollno, st[i].name,
+st[i].courname, st[i].m1,st[i].m2, st[i].m3);
+}
+}
