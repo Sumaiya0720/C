@@ -1,0 +1,69 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define max 5
+struct stack
+{
+int stk[max];
+int top;
+}st;
+int main()
+{
+int i ,ch=0 , num;
+st.top=-1;
+do
+{
+printf("Enter the Operation to be Performed:\n");
+printf("1.Push \n2.Pop\n3.Display\n4.Exit\n");
+scanf("%d",&ch);
+switch(ch)
+{
+case 1:
+printf("PUSH\n");
+if(st.top==max-1)
+{
+printf("Stack Overflow\n");
+}
+else
+{
+printf("Enter number to be pushed:\n");
+scanf("%d",&num);
+st.top++;
+st.stk[st.top]=num;
+for(i=st.top;i>=0;i--)
+{
+printf("%d\n",st.stk[i]);
+}
+}
+break;
+case 2:
+printf("POP\n");
+if(st.top==-1)
+{
+printf("Stack Underflow\n");
+}
+else
+{
+num=st.stk[st.top];
+st.top--;
+printf("Element Poped :%d\n", num);
+}
+break;
+case 3:
+if(st.top==-1)
+{
+printf("Stack is Empty\n");
+}
+else
+{
+printf("Stack\n");
+}
+for(i=st.top;i>=0;i--)
+{
+printf("%d\n",st.stk[i]);
+}
+break;
+default:
+exit(0);
+}
+}while(ch!=3);
+return 0;}
