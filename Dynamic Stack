@@ -1,0 +1,88 @@
+#include <stdio.h>
+#include<stdlib.h>
+struct stack
+{
+int number;
+struct stack *next;
+}*p,*q,*top;
+void push();
+int pop();
+void display();
+int main()
+{
+int ch,x;
+top=NULL;
+do
+{
+printf("\n1.Push\n2.Pop\n");
+printf("Enter your choice: \n");
+scanf("%d",&ch);
+switch(ch)
+{
+case 1:
+{
+push();
+}
+display();
+break;
+case 2:
+x=pop();
+if(x!=0)
+{
+printf("The popped element is: %d\n",x);
+}
+display();
+break;
+}
+}while(ch!=3);
+}
+void push()
+{
+printf("Enter the number to be pushed: \n");
+p=(struct stack *)malloc(sizeof(struct stack));
+scanf("%d",&p->number);
+p->next=NULL;
+if(top==NULL)
+{
+top=p;
+}
+else
+{
+p->next=top;
+top=p;
+}
+}
+int pop()
+{
+int x;
+if(top==NULL)
+{
+printf("The stack is Empty!!\n");
+return 0;
+}
+else
+{
+p=top;
+x=top->number;
+top=top->next;
+free(p);
+return x;
+}
+}
+void display()
+{
+if(top==NULL)
+{
+printf("The stack is Empty!!\n");
+}
+else
+{
+printf("The stack is: \n");
+q=top;
+while(q!=NULL)
+{
+printf("%d\t\n",q->number);
+q=q->next;
+}
+}
+}
