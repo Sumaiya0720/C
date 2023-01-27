@@ -1,0 +1,179 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+int number;
+struct node *next;
+};
+void display(struct node *);
+void disp_rev(struct node *);
+int main()
+{
+struct node *head=NULL,*curr,*p,*q,*r;
+int ch,sr,pos,fnd,c2,n,c3,d1;
+char c1;
+curr=(struct node*)malloc(sizeof(struct node));
+printf("\nENTER NO OF ELEMENTS IN THE LIST:");
+scanf("%d",&curr->number);
+if(head==NULL)
+head=curr;
+do
+{
+printf("\nWANT TO CREATE A NEW NODE?");
+scanf(" %c",&c1);
+if(c1=='y')
+{
+curr->next=(struct node*)malloc(sizeof(struct node));
+curr=curr->next;
+printf("\nENTER THE ELEMENT:");
+scanf("%d",&curr->number);
+}
+}while(c1=='y'|| c1=='Y');
+curr->next=NULL;
+printf("\nCONTENTS OF LINKED LIST:\n");
+display(head);
+do
+{
+printf("\n\nMENU:\n1.SEARCH\n2.INSERT\n3.DELETE\n4.DISPLA
+Y IN REVERSE\n5.REVERT SLL\n6.EXIT");
+printf("\nENTER YOUR CHOICE:");
+scanf("%d",&ch);
+switch(ch)
+{
+case 1: pos=1;fnd=0;
+printf("\nENTER DATA TO BE SEARCHED:");
+scanf("%d",&sr);
+curr=head;
+while( fnd==0 && curr!=NULL)
+{
+if(curr->number==sr)
+fnd=1;
+else
+{
+pos++;
+curr=curr->next;
+}
+}
+if(fnd==1)
+printf("\n%d IS FOUND AT POSITION %d ",sr,pos);
+else
+printf("\nELEMENT NOT FOUND");
+break;
+case 2:
+printf("\nNODE TO BE INSERTED
+AT:\n1.BEGINNING\n2.MIDDLE\n3.END");
+printf("\nENTER YOUR CHOICE:");
+scanf("%d",&c2);
+p=(struct node*)malloc(sizeof(struct node));
+printf("\nENTER DATA:");
+scanf("%d",&p->number);
+p->next=NULL;
+if(c2==1)
+{
+p->next=head;
+head=p;
+}
+else if(c2==2)
+{
+printf("\nENTER DATA AFTER WHICH NEW NODE IS TO BE
+INSERTED");
+scanf("%d",&n);
+curr=head;
+while(curr->number!=n)
+{
+curr=curr->next;
+}
+p->next=curr->next;
+curr->next=p;
+}
+else if(c2==3)
+{
+curr=head;
+while(curr->next!=NULL)
+{
+curr=curr->next;
+}
+curr->next=p;
+}
+display(head);
+break;
+case 3:
+printf("\nDELETE");
+printf("\nNODE TO BE DELETED
+AT:\n1.BEGINNING\n2.MIDDLE\n3.END");
+printf("\nENTER YOUR CHOICE:");
+scanf("%d",&c3);
+if(c3==1)
+{
+p=head;
+head=head->next;
+free(p);
+}
+else if(c3==2)
+{
+printf("\nENTER DATA TO BE DELETED:");
+scanf("%d",&d1);
+curr=head;
+while(curr->next->number!=d1)
+{
+curr=curr->next;
+}
+p=curr->next;
+curr->next=p->next;
+free(p);
+}
+else if(c3==3)
+{
+curr=head;
+while(curr->next->next!=NULL)
+{
+curr=curr->next;
+}
+p=curr->next;
+curr->next=NULL;
+free(p);
+}
+display(head);
+break;
+case 4: printf("\nDISPLAY IN REVERSE\n");
+disp_rev(head);
+break;
+case 5:printf("\nREVERT SINGLY LINKED LIST\n");
+p=head;
+q=NULL;
+while(p!=NULL)
+{
+r=q;
+q=p;
+p=p->next;
+q->next=r;
+}
+head=q;
+display(head);
+break;
+default: exit(0);
+}
+}while(ch!=6);
+return 0;
+}
+void display(struct node *curr)
+{
+if(curr==NULL)
+printf("\n\tLIST IS EMPTY!");
+else
+{
+while(curr!=NULL)
+{
+printf("\t%d",curr->number);
+curr=curr->next;
+}
+}
+}
+void disp_rev(struct node *curr)
+{
+if(curr!=NULL)
+{
+disp_rev(curr->next);
+printf("\t%d",curr->number);
+}
+}
